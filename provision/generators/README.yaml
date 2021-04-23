@@ -1,0 +1,44 @@
+---
+#
+# This is the canonical configuration for the `README.md`
+# Run `make readme` to rebuild the `README.md`
+#
+
+# Name of this project
+name: ghq-project-manager
+
+email:
+  support: support@hadenlabs.com
+
+# Logo for this project
+#logo: docs/logo.png
+
+# License of this project
+license: 'LGPL-3.0'
+
+# Canonical GitHub repo
+github_repo: hadenlabs/ghq-project-manager
+
+# Badges to display
+badges:
+  - name: GitHub tag (latest SemVer)
+    image: https://img.shields.io/github/v/tag/hadenlabs/ghq-project-manager.svg?label=latest&sort=semver
+    url: https://github.com/hadenlabs/ghq-project-manager/releases
+  - name: Lint
+    image: https://github.com/hadenlabs/ghq-project-manager/actions/workflows/lint.yml/badge.svg?branch=develop
+    url: https://github.com/hadenlabs/ghq-project-manager/actions
+  - name: Issues
+    image: https://img.shields.io/github/issues/hadenlabs/ghq-project-manager.svg
+    url: https://github.com/hadenlabs/ghq-project-manager/issues
+  - name: Latest Release
+    image: https://img.shields.io/github/release/hadenlabs/ghq-project-manager.svg
+    url: https://github.com/hadenlabs/ghq-project-manager/releases
+
+# Short description of this project
+description: |-
+
+  ghq project manager for vcode
+
+
+usage: |-
+
