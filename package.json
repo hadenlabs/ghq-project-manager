@@ -1,14 +1,36 @@
 {
   "name": "@hadenlabs/ghq-project-manager",
-  "version": "0.0.0",
+  "displayName": "ghq project manager",
   "description": "ghq-project-manager for vscode",
+  "version": "0.0.0",
+  "publisher": "hadenlabs",
   "author": "Luis Mayta <slovacus@gmail.com>",
   "license": "LGPL-3.0",
   "engines": {
-    "node": ">=14"
+    "node": ">=14",
+		"vscode": "^1.48.0"
   },
-  "keywords": [],
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+    "onCommand:ghq-project-manager.helloWorld"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "ghq-project-manager.helloWorld",
+				"title": "Hello World"
+			}
+		]
+	},
   "scripts": {
+    "vscode:prepublish": "yarn run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "yarn run compile && yarn run lint:fix",
+		"test": "node ./out/test/runTest.js",
     "build": "./node_modules/.bin/tsc -p",
     "build:tool": "yarn run build ./tools/",
     "clean": "rimraf -rf dist",
@@ -40,10 +62,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hadenlabs/ghq-project-manager.git"
+    "url": "https://github.com/hadenlabs/ghq-project-manager"
   },
   "keywords": [
-    "commitlint",
+    "ghq",
     "git",
     "commits",
     "hadenlabs"
@@ -52,8 +74,18 @@
     "url": "https://github.com/hadenlabs/ghq-project-manager/issues"
   },
   "homepage": "https://github.com/hadenlabs/ghq-project-manager#readme",
-  "dependencies": {},
+  "dependencies": {
+    "@types/vscode": "^1.55.0",
+    "shelljs": "^0.8.4",
+    "strip-ansi": "^7.0.0",
+    "util.promisify": "^1.1.1"
+  },
   "devDependencies": {
+		"@types/glob": "^7.1.3",
+		"@types/node": "^14.14.41",
+		"glob": "^7.1.6",
+		"mocha": "^8.3.2",
+		"vscode-test": "^1.5.2",
     "@babel/eslint-parser": "^7.13.14",
     "@commitlint/cli": "^12.1.1",
     "@hadenlabs/commitlint-config": "^0.1.0",
