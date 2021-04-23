@@ -8,7 +8,7 @@ module.exports = {
   singleQuote: true,
   overrides: [
     {
-      files: '{*.js?(on),*.y?(a)ml,.*.js?(on),.*.y?(a)ml,*.md,.prettierrc,.stylelintrc,.babelrc}',
+      files: '{*.js,*.y?(a)ml,.*.y?(a)ml,*.md,.prettierrc,.stylelintrc,.babelrc}',
       options: {
         arrowParens: 'always',
         printWidth: 100,
@@ -20,7 +20,7 @@ module.exports = {
       }
     },
     {
-      files: '{**/.vscode/*.json,**/tsconfig.json,**/tsconfig.*.json}',
+      files: '{*.json,.*.json,**/.vscode/*.json,**/tsconfig.json,**/tsconfig.*.json}',
       options: {
         parser: 'json',
         quoteProps: 'preserve',
