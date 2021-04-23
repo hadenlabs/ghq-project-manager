@@ -23,6 +23,7 @@ module.exports = {
       files: '{*.json,.*.json,**/.vscode/*.json,**/tsconfig.json,**/tsconfig.*.json}',
       options: {
         parser: 'json',
+        tabWidth: 2,
         quoteProps: 'preserve',
         singleQuote: false
       }
