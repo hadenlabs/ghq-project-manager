@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/python,node
-# Edit at https://www.toptal.com/developers/gitignore?templates=python,node
+# Created by https://www.toptal.com/developers/gitignore/api/python,node,vscode
+# Edit at https://www.toptal.com/developers/gitignore?templates=python,node,vscode
 
 ### Node ###
 # Logs
@@ -274,4 +274,12 @@ Thumbs.db
 .prof
 
 
-# End of https://www.toptal.com/developers/gitignore/api/python,node
+### vscode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# End of https://www.toptal.com/developers/gitignore/api/python,node,vscode
