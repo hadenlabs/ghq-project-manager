@@ -27,7 +27,7 @@ PROJECT := ghq-project-manager
 PYTHON_VERSION=3.8.0
 NODE_VERSION=14.15.5
 PYENV_NAME="${PROJECT}"
-GIT_IGNORES:=python,node
+GIT_IGNORES:=python,node,vscode
 GI:=gi
 
 # issues reviewers
