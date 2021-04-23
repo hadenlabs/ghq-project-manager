@@ -1,0 +1,29 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+isort = "*"
+mypy = "*"
+pycodestyle = "*"
+pydocstyle = "*"
+pylint = "*"
+parso = "*"
+bumpversion = "*"
+pre-commit = "*"
+doc8 = "*"
+bridgecrew = "*"
+mkdocs = "*"
+pygments = "*"
+pymdown-extensions = "*"
+mkdocs-material = "*"
+grip = "*"
+
+[packages]
+
+[scripts]
+update = "pre-commit autoupdate"
+
+[requires]
+python_version = "3.8.0"
