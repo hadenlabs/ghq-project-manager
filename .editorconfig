@@ -35,11 +35,6 @@ insert_final_newline = ignore
 [Makefile]
 indent_style = tab
 
-# Indentation override for all JS under lib directory
-[*.{el,js,json,md,yml,yaml,tf}]
-indent_style = space
-indent_size = 2
-
 [*.{make,mk}]
 indent_style = tab
 indent_size  = 4
