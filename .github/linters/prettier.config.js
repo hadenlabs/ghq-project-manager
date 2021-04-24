@@ -1,14 +1,14 @@
 module.exports = {
-  tabWidth: 2,
-  printWidth: 100,
+  arrowParens: 'always',
+  printWidth: 120,
   proseWrap: 'preserve',
   semi: false,
-  trailingComma: 'none',
-  arrowParens: 'always',
   singleQuote: true,
+  tabWidth: 2,
+  trailingComma: 'none',
   overrides: [
     {
-      files: '{*.js,*.y?(a)ml,.*.y?(a)ml,*.md,.prettierrc,.stylelintrc,.babelrc}',
+      files: '{*.js,*.ts,*.y?(a)ml,.*.y?(a)ml,*.md,.prettierrc,.stylelintrc,.babelrc}',
       options: {
         arrowParens: 'always',
         printWidth: 100,
