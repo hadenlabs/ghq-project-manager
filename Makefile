@@ -29,7 +29,7 @@ NODE_VERSION=14.15.5
 PYENV_NAME="${PROJECT}"
 GIT_IGNORES:=python,node,vscode
 GI:=gi
-
+GIT_IGNORES_CUSTOM:= out
 # issues reviewers
 REVIEWERS?=luismayta
 
