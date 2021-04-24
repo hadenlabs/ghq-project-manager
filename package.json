@@ -64,27 +64,26 @@
     ]
   },
   "scripts": {
-    "build": "./node_modules/.bin/tsc -p",
+    "build": "./node_modules/.bin/tsc -p ./",
     "clean": "rimraf -rf dist",
     "clean:all": "yarn clean:cache && yarn clean:build:all && yarn clean node_modules",
     "clean:build": "yarn clean dist .next out .serverless_nextjs",
     "clean:build:all": "yarn clean && yarn clean:build && yarn clean:build:test",
     "clean:build:test": "yarn clean ./coverage",
     "clean:cache": "yarn clean ./node_modules/.cache",
-    "compile": "tsc -p ./",
     "lint": "eslint --config=.github/linters/.eslintrc.js --ignore-path=.github/linters/.eslintignore ./ --ext .js,.jsx,.mjs,.d.ts,.ts,.tsx",
     "lint:fix": "yarn lint --fix",
     "lint:less": "stylelint --config=.github/linters/.stylintrc --syntax less **/*.less",
     "lint:less:fix": "yarn lint:less --fix",
-    "prebuild": "yarn run clean",
+    "prebuild": "yarn run clean:build:all && yarn prettier:fix",
     "precommit": "lint-staged",
-    "pretest": "yarn run compile && yarn run lint:fix",
+    "pretest": "yarn run build && yarn run lint:fix",
     "prettier": "prettier --config=.github/linters/prettier.config.js --ignore-path=.github/linters/.prettierignore",
     "prettier:fix": "yarn prettier:lint --write=true",
     "prettier:lint": "yarn prettier '**/*.{js?(on),ts?(x),scss,md,y?(a)ml,gql,graphql?(s),less,mjml}' --write=false --list-different",
     "test": "node ./out/test/runTest.js",
-    "vscode:prepublish": "yarn run compile",
-    "watch": "tsc -watch -p ./"
+    "vscode:prepublish": "yarn run build",
+    "watch": "./node_modules/.bin/tsc -watch -p ./"
   },
   "publishConfig": {
     "access": "public",
@@ -111,7 +110,6 @@
   },
   "homepage": "https://github.com/hadenlabs/ghq-project-manager#readme",
   "dependencies": {
-    "@types/vscode": "^1.55.0",
     "shelljs": "^0.8.4",
     "strip-ansi": "^7.0.0",
     "util.promisify": "^1.1.1"
@@ -134,9 +132,7 @@
     "chai": "^4.3.4",
     "crypto-js": "^4.0.0",
     "eslint": "^7.25.0",
-    "eslint-config-prettier": "^8.2.0",
     "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-promise": "^5.1.0",
     "glob": "^7.1.6",
     "husky": "^6.0.0",
