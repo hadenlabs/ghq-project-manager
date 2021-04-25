@@ -21,11 +21,11 @@ export default class ProjectLocator {
    * @param {String} s The path to be processed
    * @returns Number
    */
-  getPathDepth(s: string): number {
+  private getPathDepth(s: string): number {
     return s.split(path.sep).length
   }
 
-  checkFolderExists(folderPath: string) {
+  private checkFolderExists(folderPath: string) {
     const exists = existsSync(folderPath)
     if (!exists) {
       vscode.window.showWarningMessage(`Directory ${folderPath} does not exists.`)
@@ -61,11 +61,11 @@ export default class ProjectLocator {
     return this.dirList
   }
 
-  clearDirList() {
+  private clearDirList(): void {
     this.dirList = new DirList()
   }
 
-  handleError(err: string) {
+  private handleError(err: string) {
     console.log('Error:', err)
   }
 }
