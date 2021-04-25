@@ -1,4 +1,4 @@
-/* global describe, it */
+/* global suite, it */
 
 import DirList from '../../domain/dirList'
 import { expect } from 'chai'
