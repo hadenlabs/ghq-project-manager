@@ -75,7 +75,7 @@
     "lint:fix": "yarn lint --fix",
     "lint:less": "stylelint --config=.github/linters/.stylintrc --syntax less **/*.less",
     "lint:less:fix": "yarn lint:less --fix",
-    "prebuild": "yarn run clean:build:all && yarn prettier:fix",
+    "prebuild": "yarn run clean:build:all",
     "precommit": "lint-staged",
     "pretest": "yarn run build && yarn run lint:fix",
     "prettier": "prettier --config=.github/linters/prettier.config.js --ignore-path=.github/linters/.prettierignore",
@@ -152,6 +152,6 @@
     "vscode-test": "^1.5.2",
     "walker": "^1.0.7"
   },
-  "prettier": ".github/linters/prettier.config.js",
+  "prettier": "./.github/linters/prettier.config.js",
   "stylintrc": ".github/linters/.stylintrc"
 }
