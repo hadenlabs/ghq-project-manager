@@ -15,7 +15,7 @@ module.exports = {
   ],
   plugins: ['@typescript-eslint'],
   rules: {
-    "@typescript-eslint/semicolon": 'off',
+    '@typescript-eslint/semicolon': 'off',
     '@typescript-eslint/member-delimiter-style': 'off',
     '@typescript-eslint/naming-convention': 'warn',
     '@typescript-eslint/semi': 'off',
