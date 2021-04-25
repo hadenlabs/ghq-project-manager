@@ -8,7 +8,7 @@ module.exports = {
   trailingComma: 'none',
   overrides: [
     {
-      files: '{*.js,*.ts,*.y?(a)ml,.*.y?(a)ml,*.md,.prettierrc,.stylelintrc,.babelrc}',
+      files: '{*.js,*.y?(a)ml,.*.y?(a)ml,*.md,.prettierrc,.stylelintrc,.babelrc}',
       options: {
         arrowParens: 'always',
         printWidth: 100,

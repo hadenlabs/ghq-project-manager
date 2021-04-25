@@ -14,3 +14,4 @@ terraform.md
 *.enc.yaml
 vendor
 out
+.vscode-test
