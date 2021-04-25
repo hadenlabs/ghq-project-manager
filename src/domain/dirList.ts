@@ -1,15 +1,15 @@
-import * as path from 'path';
-import ProjectRepository from './ProjectRepository';
+import * as path from 'path'
+import ProjectRepository from './ProjectRepository'
 
 export default class DirList {
-  dirs: ProjectRepository[];
+  dirs: ProjectRepository[]
 
   constructor() {
-    this.dirs = [];
+    this.dirs = []
   }
 
   get dirList() {
-    return this.dirs;
+    return this.dirs
   }
   /**
    * Returns an array with all current directories
@@ -18,32 +18,31 @@ export default class DirList {
    * @readonly
    */
   get directories(): string[] {
-    return this.dirs.map((x) => x.directory);
+    return this.dirs.map((x) => x.directory)
   }
 
   concat(aDirList: DirList) {
-    aDirList.dirList.forEach((e) => this.add(e.directory, e.repository));
+    aDirList.dirList.forEach((e) => this.add(e.directory))
   }
 
-  add(dirPath: string, repositoryName?: string) {
-    const dirName = path.basename(dirPath);
+  add(dirPath: string) {
+    const dirName = path.basename(dirPath)
 
     if (this.exists(dirPath)) {
-      return;
+      return
     }
 
     this.dirs.push({
       directory: dirPath,
-      name: dirName,
-      repository: repositoryName || 'not available'
-    });
+      name: dirName
+    })
   }
 
   exists(dirPath: string) {
-    return this.dirs.find((e) => e.directory === dirPath) !== undefined;
+    return this.dirs.find((e) => e.directory === dirPath) !== undefined
   }
 
   clear() {
-    this.dirs = [];
+    this.dirs = []
   }
 }

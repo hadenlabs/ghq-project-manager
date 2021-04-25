@@ -1,4 +1,4 @@
-import { WorkspaceConfiguration } from 'vscode';
+import { WorkspaceConfiguration } from 'vscode'
 
 /**
  * @typedef Config
@@ -6,14 +6,14 @@ import { WorkspaceConfiguration } from 'vscode';
  * @class Config
  */
 export default class Config extends Object {
-  baseProjectFolders: string;
+  baseProjectFolders: string
 
   constructor(vscodeCfg?: WorkspaceConfiguration) {
-    super();
-    this.baseProjectFolders = '';
+    super()
+    this.baseProjectFolders = ''
   }
 
   loadConfigFromVsCode(vscodeConfig: WorkspaceConfiguration) {
-    this.baseProjectFolders = vscodeConfig.get('ghqRoot', '');
+    this.baseProjectFolders = vscodeConfig.get('ghqRoot', '')
   }
 }
