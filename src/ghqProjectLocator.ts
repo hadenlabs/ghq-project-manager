@@ -48,15 +48,14 @@ export default class ProjectLocator {
   }
 
   locateGhqProjects(): DirList {
-    /** @type {string[]} */
-    const projects: DirList[] = []
-
-    const ghqList = this.ghqGetRepositoryList()
-    ghqList.split('/n').forEach((element: string) => {
-      const dirList = new DirList()
-      dirList.add(element)
-      projects.push(dirList)
-    })
+    this.ghqGetRepositoryList()
+      .split('\n')
+      .forEach((element: string) => {
+        if (element == '') {
+          return
+        }
+        this.dirList.add(element.trim())
+      })
 
     return this.dirList
   }
