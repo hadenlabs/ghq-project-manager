@@ -64,7 +64,7 @@
     ]
   },
   "scripts": {
-    "build": "./node_modules/.bin/tsc -p ./",
+    "build": "tsc -p ./",
     "clean": "rimraf -rf dist",
     "clean:all": "yarn clean:cache && yarn clean:build:all && yarn clean node_modules",
     "clean:build": "yarn clean dist .next out .serverless_nextjs",
@@ -83,7 +83,7 @@
     "prettier:lint": "yarn prettier '**/*.{js?(on),ts?(x),scss,md,y?(a)ml,gql,graphql?(s),less,mjml}' --write=false --list-different",
     "test": "node ./out/test/runTest.js",
     "vscode:prepublish": "yarn run build",
-    "watch": "./node_modules/.bin/tsc -watch -p ./"
+    "watch": "tsc -watch -p ./"
   },
   "publishConfig": {
     "access": "public",
@@ -134,12 +134,14 @@
     "eslint": "^7.25.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-promise": "^5.1.0",
     "glob": "^7.1.6",
     "husky": "^6.0.0",
     "lint-staged": "^10.5.4",
     "mocha": "^8.3.2",
     "prettier": "^2.2.1",
+    "prettier-eslint": "^12.0.0",
     "rimraf": "^3.0.2",
     "shelljs": "^0.8.4",
     "sinon": "^10.0.0",
