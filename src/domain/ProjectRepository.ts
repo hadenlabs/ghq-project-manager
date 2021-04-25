@@ -1,10 +1,8 @@
 export default class ProjectRepository {
-  name: string;
-  directory: string;
-  repository: string;
-  constructor(name: string, dir: string, repo: string) {
-    this.name = name;
-    this.directory = dir;
-    this.repository = repo;
+  name: string
+  directory: string
+  constructor(name: string, dir: string) {
+    this.name = name
+    this.directory = dir
   }
 }
