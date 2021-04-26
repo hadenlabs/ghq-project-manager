@@ -1,5 +1,5 @@
 // @ts-check
-import { Config, DirList } from './domain'
+import { Config, DirList, IProjectRepository } from './domain'
 import * as vscode from 'vscode'
 import * as path from 'path'
 import { existsSync } from 'fs'
@@ -67,7 +67,11 @@ export default class ProjectLocator {
         if (element === '') {
           return
         }
-        this.dirList.add(path.join(ghqRoot, element.trim()))
+        const repository: IProjectRepository = {
+          name: element.trim(),
+          directory: path.join(ghqRoot, element.trim())
+        }
+        this.dirList.add(repository.name, repository.directory)
       })
 
     return this.dirList

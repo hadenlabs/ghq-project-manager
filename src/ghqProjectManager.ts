@@ -25,9 +25,9 @@ export default class GhqProjectManager {
   }
 
   getQuickPickList(): ProjectQuickPick[] {
-    this.repoList = this.repoList.sort((a, b) => {
-      return a.name > b.name ? 1 : -1
-    })
+    // this.repoList = this.repoList.sort((a, b) => {
+    //   return a.name > b.name ? 1 : -1
+    // })
 
     return this.repoList.map((repo) => {
       const description = `${Icons.globe} ${repo.name}`

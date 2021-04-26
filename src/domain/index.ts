@@ -3,4 +3,14 @@ import DirList from './dirList'
 import RecentItem from './RecentItem'
 import ProjectRepository from './ProjectRepository'
 import ProjectQuickPick from './ProjectQuickPick'
-export { Config, Icons, DirList, RecentItem, ProjectRepository, ProjectQuickPick }
+import { IProjectRepository, IQuickPickItem } from './entities'
+export {
+  Config,
+  Icons,
+  DirList,
+  RecentItem,
+  ProjectRepository,
+  ProjectQuickPick,
+  IProjectRepository,
+  IQuickPickItem
+}
