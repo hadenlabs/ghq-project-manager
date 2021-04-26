@@ -1,4 +1,4 @@
-/* global suite, it */
+/* global suite, test */
 
 import { expect } from 'chai'
 import { createSandbox, SinonSandbox } from 'sinon'

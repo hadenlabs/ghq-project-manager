@@ -8,7 +8,7 @@ export default class DirList {
     this.dirs = []
   }
 
-  get dirList() {
+  get dirList(): ProjectRepository[] {
     return this.dirs
   }
   /**
@@ -21,11 +21,11 @@ export default class DirList {
     return this.dirs.map((x) => x.directory)
   }
 
-  concat(aDirList: DirList) {
+  concat(aDirList: DirList): void {
     aDirList.dirList.forEach((e) => this.add(e.directory))
   }
 
-  add(dirPath: string) {
+  add(dirPath: string): void {
     const dirName = path.basename(dirPath)
 
     if (this.exists(dirPath)) {
@@ -42,7 +42,7 @@ export default class DirList {
     return this.dirs.find((e) => e.directory === dirPath) !== undefined
   }
 
-  clear() {
+  clear(): void {
     this.dirs = []
   }
 }
