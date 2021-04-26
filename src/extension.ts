@@ -9,7 +9,7 @@ const cfg = new Config(vscode.workspace.getConfiguration('ghqProjectManager'))
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
-function activate(context: vscode.ExtensionContext) {
+export function activate(context: vscode.ExtensionContext) {
   const isGhqAvailable = sh.which('ghq')
 
   if (!isGhqAvailable) {
@@ -22,20 +22,13 @@ function activate(context: vscode.ExtensionContext) {
     projectManager.showProjectList(false)
   })
 
-  const newWindowdisposable = vscode.commands.registerCommand(
-    'ghqProjectManager.openProjectNewWindow',
-    () => {
-      projectManager.showProjectList(true)
-    }
-  )
-
-  context.subscriptions.push(disposable, newWindowdisposable)
+  context.subscriptions.push(disposable)
 }
 
 exports.activate = activate
 
 // this method is called when your extension is deactivated
-function deactivate() {
+export function deactivate() {
   //clear things
 }
 
