@@ -14,7 +14,7 @@
 
 # ghq-project-manager
 
-[![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/hadenlabs/ghq-project-manager.svg?label=latest&sort=semver)](https://github.com/hadenlabs/ghq-project-manager/releases) [![Lint](https://github.com/hadenlabs/ghq-project-manager/actions/workflows/lint.yml/badge.svg?branch=develop)](https://github.com/hadenlabs/ghq-project-manager/actions) [![Issues](https://img.shields.io/github/issues/hadenlabs/ghq-project-manager.svg)](https://github.com/hadenlabs/ghq-project-manager/issues) [![Latest Release](https://img.shields.io/github/release/hadenlabs/ghq-project-manager.svg)](https://github.com/hadenlabs/ghq-project-manager/releases)
+[![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/hadenlabs/ghq-project-manager?label=latest&sort=semver)](https://github.com/hadenlabs/ghq-project-manager/releases) [![Lint](https://img.shields.io/github/workflow/status/hadenlabs/ghq-project-manager/lint-code)](https://github.com/hadenlabs/ghq-project-manager/actions) [![Issues](https://img.shields.io/github/issues/hadenlabs/ghq-project-manager)](https://github.com/hadenlabs/ghq-project-manager/issues) [![Latest Release](https://img.shields.io/github/release/hadenlabs/ghq-project-manager)](https://github.com/hadenlabs/ghq-project-manager/releases)
 
 ghq project manager for vcode
 
