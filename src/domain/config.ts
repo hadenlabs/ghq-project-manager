@@ -1,8 +1,8 @@
 import { WorkspaceConfiguration } from 'vscode'
 
 export enum Icons {
-  FOLDER = '\uD83D\uDCC2',
-  GLOBE = '\uD83C\uDF10'
+  folder = '\uD83D\uDCC2',
+  globe = '\uD83C\uDF10'
 }
 
 /**

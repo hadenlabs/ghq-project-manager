@@ -64,7 +64,7 @@ export default class ProjectLocator {
     this.ghqGetRepositoryList()
       .split('\n')
       .forEach((element: string) => {
-        if (element == '') {
+        if (element === '') {
           return
         }
         this.dirList.add(path.join(ghqRoot, element.trim()))
