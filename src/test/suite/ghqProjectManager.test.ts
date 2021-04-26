@@ -5,7 +5,7 @@ import { createSandbox, SinonSandbox } from 'sinon'
 import * as vscode from 'vscode'
 
 import ProjectManager from '../../ghqProjectManager'
-import Config from '../../domain/config'
+import { Config } from '../../domain'
 import StateMock from './stateMock'
 const projectManager = new ProjectManager(new Config(), new StateMock())
 

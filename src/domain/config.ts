@@ -1,7 +1,9 @@
 import { WorkspaceConfiguration } from 'vscode'
 
-export const FOLDER = '\uD83D\uDCC2'
-export const GLOBE = '\uD83C\uDF10'
+export enum Icons {
+  FOLDER = '\uD83D\uDCC2',
+  GLOBE = '\uD83C\uDF10'
+}
 
 /**
  * @typedef Config

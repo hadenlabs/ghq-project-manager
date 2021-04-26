@@ -1,6 +1,6 @@
 /* global suite, it */
 
-import DirList from '../../domain/dirList'
+import { DirList } from '../../domain'
 import { expect } from 'chai'
 
 suite('dirList Tests', () => {
