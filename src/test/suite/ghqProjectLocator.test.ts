@@ -2,7 +2,7 @@
 
 import ProjectLocator from '../../ghqProjectLocator'
 import { expect } from 'chai'
-import { Config, DirList } from '../../domain'
+import { Config, DirList, ProjectRepository } from '../../domain'
 import * as Sinon from 'sinon'
 
 const config = new Config()
@@ -56,5 +56,23 @@ suite('ghqProjectLocator locateGhqProjects', () => {
       '/home/user/projects/github.com/hadenlabs/repo2',
       '/home/user/projects/github.com/hadenlabs/repo3'
     ]).to.have.all.members(dirList.directories)
+  })
+
+  test('should return list dir', () => {
+    const projectRepositoryList: ProjectRepository[] = projectLocator.locateGhqProjects().dirs
+    expect([
+      new ProjectRepository({
+        name: 'github.com/hadenlabs/repo1',
+        directory: '/home/user/projects/github.com/hadenlabs/repo1'
+      }),
+      new ProjectRepository({
+        name: 'github.com/hadenlabs/repo1',
+        directory: '/home/user/projects/github.com/hadenlabs/repo1'
+      }),
+      new ProjectRepository({
+        name: 'github.com/hadenlabs/repo1',
+        directory: '/home/user/projects/github.com/hadenlabs/repo1'
+      })
+    ]).to.have.all.members(projectRepositoryList)
   })
 })

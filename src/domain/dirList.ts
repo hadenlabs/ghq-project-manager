@@ -1,4 +1,3 @@
-import * as path from 'path'
 import ProjectRepository from './ProjectRepository'
 
 export default class DirList {
@@ -21,20 +20,14 @@ export default class DirList {
     return this.dirs.map((x) => x.directory)
   }
 
-  concat(aDirList: DirList): void {
-    aDirList.dirList.forEach((e) => this.add(e.directory))
-  }
-
-  add(dirPath: string): void {
-    const dirName = path.basename(dirPath)
-
+  add(name: string, dirPath: string): void {
     if (this.exists(dirPath)) {
       return
     }
 
     this.dirs.push({
       directory: dirPath,
-      name: dirName
+      name: name
     })
   }
 
