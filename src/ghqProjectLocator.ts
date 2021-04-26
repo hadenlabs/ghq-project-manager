@@ -15,6 +15,7 @@ export default class ProjectLocator {
     this.dirList = new DirList()
     this.config = config || new Config()
   }
+
   /**
    * Returns the depth of the directory path
    *
@@ -34,6 +35,19 @@ export default class ProjectLocator {
     return exists
   }
 
+  getGhqRoot(): string {
+    const child = spawn('git config --global ghq.root', {
+      shell: true
+    })
+    child.stdout.on('data', (result) => {
+      return result.toString()
+    })
+    child.stderr.on('close', (error: any) => {
+      this.handleError(error)
+    })
+    return ''
+  }
+
   ghqGetRepositoryList(): string {
     const child = spawn('ghq list', {
       shell: true
@@ -48,13 +62,14 @@ export default class ProjectLocator {
   }
 
   locateGhqProjects(): DirList {
+    const ghqRoot: string = this.getGhqRoot()
     this.ghqGetRepositoryList()
       .split('\n')
       .forEach((element: string) => {
         if (element == '') {
           return
         }
-        this.dirList.add(element.trim())
+        this.dirList.add(path.join(ghqRoot, element.trim()))
       })
 
     return this.dirList

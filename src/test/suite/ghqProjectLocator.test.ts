@@ -23,18 +23,27 @@ suite('ghqProjectLocator Tests', function () {
       expect(typeof projectLocator.ghqGetRepositoryList).to.be.equals('function')
       done()
     })
+
+    test('Should export getGhqRoot function', function (done) {
+      expect(typeof projectLocator.getGhqRoot).to.be.equals('function')
+      done()
+    })
   })
 })
 
 suite('ghqProjectLocator locateGhqProjects', () => {
-  const makeStub = Sinon.stub(ProjectLocator.prototype, 'ghqGetRepositoryList')
+  const makeGetRepositoryListStub = Sinon.stub(ProjectLocator.prototype, 'ghqGetRepositoryList')
+  const makeGetGhqRootStub = Sinon.stub(ProjectLocator.prototype, 'getGhqRoot')
 
   setup(() => {
     let projects = ''
     projects += 'github.com/hadenlabs/repo1 \n'
     projects += 'github.com/hadenlabs/repo2 \n'
     projects += 'github.com/hadenlabs/repo3 \n'
-    makeStub.returns(projects)
+    const ghqRoot = '/home/user/projects'
+
+    makeGetRepositoryListStub.returns(projects)
+    makeGetGhqRootStub.returns(ghqRoot)
   })
 
   teardown(() => {
@@ -44,9 +53,9 @@ suite('ghqProjectLocator locateGhqProjects', () => {
   test('should return list dir', () => {
     const dirList: DirList = projectLocator.locateGhqProjects()
     expect([
-      'github.com/hadenlabs/repo1',
-      'github.com/hadenlabs/repo2',
-      'github.com/hadenlabs/repo3'
+      '/home/user/projects/github.com/hadenlabs/repo1',
+      '/home/user/projects/github.com/hadenlabs/repo2',
+      '/home/user/projects/github.com/hadenlabs/repo3'
     ]).to.have.all.members(dirList.directories)
   })
 })
