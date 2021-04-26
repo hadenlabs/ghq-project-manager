@@ -1,4 +1,4 @@
-name: lint code
+name: lint-code
 
 on:
   schedule:
