@@ -1,7 +1,6 @@
 import * as vscode from 'vscode'
-import * as path from 'path'
-import { SHA256 } from 'crypto-js'
-import { Config, ProjectRepository, DirList, ProjectQuickPick } from './domain'
+import { Config, Icons, ProjectRepository, DirList, ProjectQuickPick } from './domain'
+import { IQuickPickItem } from './domain/entities'
 
 import ProjectLocator from './ghqProjectLocator'
 
@@ -10,7 +9,6 @@ export default class GhqProjectManager {
   state: vscode.Memento
   loadedRepoListFromFile: boolean
   repoList: ProjectRepository[]
-  storedLists: Map<any, any>
   /**
    * Creates an instance of GhqProjectManager.
    *
@@ -22,7 +20,6 @@ export default class GhqProjectManager {
     this.state = state
     this.loadedRepoListFromFile = false
     this.repoList = []
-    this.storedLists = new Map()
 
     this.addRepoInRepoList = this.addRepoInRepoList.bind(this)
   }
@@ -33,12 +30,13 @@ export default class GhqProjectManager {
     })
 
     return this.repoList.map((repo) => {
-      const description = ''
-      const item = new ProjectQuickPick()
-      item.label = repo.name
-      item.description = description.trim()
-      item.directory = repo.directory
-      return item
+      const description = `${Icons.globe} ${repo.name}`
+      const itemQuickPick: IQuickPickItem = {
+        label: repo.name || 'name',
+        description: description.trim(),
+        directory: repo.directory || 'directory'
+      }
+      return new ProjectQuickPick(itemQuickPick)
     })
   }
 
@@ -47,47 +45,14 @@ export default class GhqProjectManager {
     return error
   }
 
-  addRepoInRepoList(repoInfo: ProjectRepository) {
+  addRepoInRepoList(repoInfo: ProjectRepository): void {
     const map = this.repoList.map((info) => {
       return info.directory
     })
+
     if (map.indexOf(repoInfo.directory) === -1) {
       this.repoList.push(repoInfo)
     }
-  }
-
-  async getProjectsFolders(subFolder = ''): Promise<string[]> {
-    const isFolderConfigured = this.config.baseProjectFolders.length > 0
-
-    if (!isFolderConfigured) {
-      throw new Error(
-        'You need to configure at least one folder in "ghqProjectManager.baseProjectsFolders" before searching for projects.'
-      )
-    }
-
-    const baseProjectsFolders: string[] =
-      subFolder === ''
-        ? vscode.workspace.getConfiguration('ghqProjectManager').get('baseProjectsFolders') || []
-        : [subFolder]
-    const resolvedProjectsFolders = baseProjectsFolders.map((path) => {
-      return this.resolveEnvironmentVariables(process.platform, path)
-    })
-
-    return resolvedProjectsFolders
-  }
-
-  getHomePath() {
-    return process.env.HOME || process.env.HOMEPATH
-  }
-
-  resolveEnvironmentVariables(processPlatform: string, aPath: string) {
-    const envVarMatcher = processPlatform === 'win32' ? /%([^%]+)%/g : /\$([^\/]+)/g
-    const resolvedPath = aPath.replace(envVarMatcher, (_, key) => process.env[key] || '')
-
-    const homePath = this.getHomePath() || ''
-    return resolvedPath.charAt(0) === '~'
-      ? path.join(homePath, resolvedPath.substr(1))
-      : resolvedPath
   }
 
   /**
@@ -98,16 +63,19 @@ export default class GhqProjectManager {
    *
    * @memberOf GhqProjectManager
    */
-  async showProjectList(openInNewWindow: boolean, baseFolder?: string) {
+  showProjectList(openInNewWindow: boolean): void {
     try {
       const options = {
         placeHolder:
           'Select a folder to open:      (it may take a few seconds to search the folders the first time)'
       }
 
-      const projectsPromise = this.getProjectsList(await this.getProjectsFolders(baseFolder))
+      const projects = this.getProjectsList()
 
-      const selected = await vscode.window.showQuickPick<ProjectQuickPick>(projectsPromise, options)
+      const selected: ProjectQuickPick = vscode.window.showQuickPick<ProjectQuickPick>(
+        projects,
+        options
+      )
 
       if (selected) {
         this.openProject(selected, openInNewWindow)
@@ -117,16 +85,19 @@ export default class GhqProjectManager {
     }
   }
 
-  async getProjectsList(directories: string[]): Promise<ProjectQuickPick[]> {
-    this.repoList = this.storedLists.get(this.getDirectoriesHash(directories))
-    if (this.repoList) {
-      return this.getQuickPickList()
-    }
-
+  getProjectsList(): ProjectQuickPick[] {
+    const projectLocator = new ProjectLocator(this.config)
+    const dirList = projectLocator.locateGhqProjects()
+    this.updateRepoList(dirList.dirList)
     return this.getQuickPickList()
   }
 
-  openProject(pickedObj: ProjectQuickPick | string, openInNewWindow = false) {
+  updateRepoList(dirList: ProjectRepository[]): ProjectRepository[] {
+    dirList.forEach(this.addRepoInRepoList)
+    return dirList
+  }
+
+  openProject(pickedObj: ProjectQuickPick | string, openInNewWindow = false): void {
     const projectPath = this.getProjectPath(pickedObj),
       uri = vscode.Uri.file(projectPath),
       newWindow = openInNewWindow || !!vscode.workspace.workspaceFolders
@@ -142,23 +113,11 @@ export default class GhqProjectManager {
     return pickedObj
   }
 
-  clearProjectList() {
+  clearProjectList(): void {
     this.repoList = []
   }
 
-  /**
-   * Calculate a hash of directories list
-   *
-   * @param {String[]} directories
-   * @returns {string} The hash of directories list
-   *
-   * @memberOf GhqProjectManager
-   */
-  getDirectoriesHash(directories: string[]) {
-    return SHA256(directories.join('')).toString()
-  }
-
-  getChannelPath() {
+  getChannelPath(): string {
     return vscode.env.appName.replace('Visual Studio ', '')
   }
 }

@@ -17,7 +17,7 @@ export default class RecentItems {
     this.list = this.state.get('recent', [])
   }
 
-  addProject(projectPath: string, gitRepo: string) {
+  addProject(projectPath: string, gitRepo: string): void {
     const idx = this.list.findIndex((p) => p.projectPath === projectPath)
     if (idx >= 0) {
       this.list[idx].lastUsed = new Date().getTime()
@@ -29,7 +29,7 @@ export default class RecentItems {
     this.state.update('recent', this.list)
   }
 
-  sortList() {
+  sortList(): void {
     this.list = this.list.sort((a, b) => b.lastUsed - a.lastUsed)
     if (this.list.length > this.listSize) {
       this.list = this.list.slice(0, this.listSize - 1)

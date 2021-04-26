@@ -1,4 +1,4 @@
-/* global suite, test, before, after */
+/* global suite, test, setup, teardown */
 
 import ProjectLocator from '../../ghqProjectLocator'
 import { expect } from 'chai'
