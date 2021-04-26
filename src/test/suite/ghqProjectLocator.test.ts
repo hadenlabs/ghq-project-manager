@@ -66,13 +66,13 @@ suite('ghqProjectLocator locateGhqProjects', () => {
         directory: '/home/user/projects/github.com/hadenlabs/repo1'
       }),
       new ProjectRepository({
-        name: 'github.com/hadenlabs/repo1',
-        directory: '/home/user/projects/github.com/hadenlabs/repo1'
+        name: 'github.com/hadenlabs/repo2',
+        directory: '/home/user/projects/github.com/hadenlabs/repo2'
       }),
       new ProjectRepository({
-        name: 'github.com/hadenlabs/repo1',
-        directory: '/home/user/projects/github.com/hadenlabs/repo1'
+        name: 'github.com/hadenlabs/repo3',
+        directory: '/home/user/projects/github.com/hadenlabs/repo3'
       })
-    ]).to.have.all.members(projectRepositoryList)
+    ]).to.have.deep.members(projectRepositoryList)
   })
 })
