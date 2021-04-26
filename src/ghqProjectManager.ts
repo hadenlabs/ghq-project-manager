@@ -25,10 +25,6 @@ export default class GhqProjectManager {
   }
 
   getQuickPickList(): ProjectQuickPick[] {
-    // this.repoList = this.repoList.sort((a, b) => {
-    //   return a.name > b.name ? 1 : -1
-    // })
-
     return this.repoList.map((repo) => {
       const description = `${Icons.globe} ${repo.name}`
       const itemQuickPick: IQuickPickItem = {
@@ -63,7 +59,7 @@ export default class GhqProjectManager {
    *
    * @memberOf GhqProjectManager
    */
-  showProjectList(openInNewWindow: boolean): void {
+  async showProjectList(openInNewWindow: boolean) {
     try {
       const options = {
         placeHolder:
@@ -72,10 +68,9 @@ export default class GhqProjectManager {
 
       const projects = this.getProjectsList()
 
-      const selected: ProjectQuickPick = vscode.window.showQuickPick<ProjectQuickPick>(
-        projects,
-        options
-      )
+      const selected:
+        | ProjectQuickPick
+        | undefined = await vscode.window.showQuickPick<ProjectQuickPick>(projects, options)
 
       if (selected) {
         this.openProject(selected, openInNewWindow)
