@@ -2,8 +2,7 @@
 
 import ProjectLocator from '../../ghqProjectLocator'
 import { expect } from 'chai'
-import Config from '../../domain/config'
-import DirList from '../../domain/dirList'
+import { Config, DirList } from '../../domain'
 import * as Sinon from 'sinon'
 
 const config = new Config()

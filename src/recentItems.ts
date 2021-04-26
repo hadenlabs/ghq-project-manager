@@ -1,5 +1,5 @@
 import { Memento } from 'vscode'
-import RecentItem from './domain/RecentItem'
+import { RecentItem } from './domain'
 
 export default class RecentItems {
   state: Memento
@@ -16,6 +16,7 @@ export default class RecentItems {
     this.listSize = listSize
     this.list = this.state.get('recent', [])
   }
+
   addProject(projectPath: string, gitRepo: string) {
     const idx = this.list.findIndex((p) => p.projectPath === projectPath)
     if (idx >= 0) {
@@ -27,6 +28,7 @@ export default class RecentItems {
     this.sortList()
     this.state.update('recent', this.list)
   }
+
   sortList() {
     this.list = this.list.sort((a, b) => b.lastUsed - a.lastUsed)
     if (this.list.length > this.listSize) {

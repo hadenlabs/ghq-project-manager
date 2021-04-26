@@ -3,7 +3,7 @@
 import * as sh from 'shelljs'
 import * as vscode from 'vscode'
 import ProjectManager from './ghqProjectManager'
-import Config from './domain/config'
+import { Config } from './domain'
 
 const cfg = new Config(vscode.workspace.getConfiguration('ghqProjectManager'))
 
@@ -18,25 +18,18 @@ function activate(context: vscode.ExtensionContext) {
 
   const projectManager = new ProjectManager(cfg, context.globalState)
 
-  const disposable = vscode.commands.registerCommand('ghqProjectManager.openProject', function () {
+  const disposable = vscode.commands.registerCommand('ghqProjectManager.openProject', () => {
     projectManager.showProjectList(false)
   })
 
   const newWindowdisposable = vscode.commands.registerCommand(
     'ghqProjectManager.openProjectNewWindow',
-    function () {
+    () => {
       projectManager.showProjectList(true)
     }
   )
 
   context.subscriptions.push(disposable, newWindowdisposable)
-
-  context.subscriptions.push(
-    vscode.workspace.onDidChangeConfiguration(() => {
-      projectManager.config = new Config(vscode.workspace.getConfiguration('ghqProjectManager'))
-      projectManager.refreshList.bind(projectManager, true)
-    })
-  )
 }
 
 exports.activate = activate

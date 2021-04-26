@@ -1,12 +1,9 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import { SHA256 } from 'crypto-js'
-import Config from './domain/config'
-import ProjectRepository from './domain/ProjectRepository'
+import { Config, ProjectRepository, DirList, ProjectQuickPick } from './domain'
 
 import ProjectLocator from './ghqProjectLocator'
-import DirList from './domain/dirList'
-import ProjectQuickPick from './domain/ProjectQuickPick'
 
 export default class GhqProjectManager {
   config: Config

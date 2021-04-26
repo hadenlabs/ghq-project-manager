@@ -1,11 +1,9 @@
-import Config from './domain/config'
-
 // @ts-check
+import { Config, DirList } from './domain'
 import * as vscode from 'vscode'
 import * as path from 'path'
 import { existsSync } from 'fs'
 import { spawn } from 'child_process'
-import DirList from './domain/dirList'
 
 export default class ProjectLocator {
   dirList: DirList
