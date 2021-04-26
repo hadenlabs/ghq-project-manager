@@ -4,13 +4,9 @@ import { SHA256 } from 'crypto-js'
 import Config from './domain/config'
 import ProjectRepository from './domain/ProjectRepository'
 
-import RecentItems from './recentItems'
 import ProjectLocator from './ghqProjectLocator'
 import DirList from './domain/dirList'
 import ProjectQuickPick from './domain/ProjectQuickPick'
-
-const FOLDER = '\uD83D\uDCC2'
-const GLOBE = '\uD83C\uDF10'
 
 export default class GhqProjectManager {
   config: Config
@@ -39,7 +35,6 @@ export default class GhqProjectManager {
       return a.name > b.name ? 1 : -1
     })
 
-    // let homeDir = this.getHomePath().replace(new RegExp(`${path.sep}$`), '') + path.sep;
     return this.repoList.map((repo) => {
       const description = ''
       const item = new ProjectQuickPick()
@@ -99,7 +94,7 @@ export default class GhqProjectManager {
   }
 
   /**
-   * Show the list of found Git projects, and open the chose project
+   * Show the list of found Ghq projects, and open the chose project
    *
    * @param {Object} opts Additional options, currently supporting only subfolders
    * @param {boolean} openInNewWindow If true, will open the selected project in a new windows, regardless of the OpenInNewWindow configuration
@@ -150,40 +145,8 @@ export default class GhqProjectManager {
     return pickedObj
   }
 
-  internalRefresh(folders: string[], suppressMessage: boolean) {
-    this.storedLists = new Map()
-    this.getProjectsList(folders)
-      .then(() => {
-        if (!suppressMessage) {
-          vscode.window.setStatusBarMessage('Git Project Manager - Project List Refreshed', 3000)
-        }
-      })
-      .catch((error) => {
-        if (!suppressMessage) {
-          this.handleError(error)
-        }
-      })
-  }
-
   clearProjectList() {
     this.repoList = []
-  }
-
-  /**
-   * Refreshs the current list of projects
-   * @param {boolean} suppressMessage if true, no warning message will be shown.
-   */
-  refreshList(suppressMessage = false) {
-    this.clearProjectList()
-    this.getProjectsFolders()
-      .then((folders) => {
-        this.internalRefresh(folders, suppressMessage)
-      })
-      .catch((error) => {
-        if (!suppressMessage) {
-          this.handleError(error)
-        }
-      })
   }
 
   /**
