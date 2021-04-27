@@ -7,6 +7,13 @@
 # Name of this project
 name: ghq-project-manager
 
+todo:
+  - name: 'feature: status bar which identifies the current project'
+    url: 'https://github.com/hadenlabs/ghq-project-manager/issues/15'
+
+features:
+  - 'Open projects in the same or new window'
+
 email:
   support: support@hadenlabs.com
 
@@ -34,9 +41,15 @@ badges:
     image: https://img.shields.io/github/release/hadenlabs/ghq-project-manager
     url: https://github.com/hadenlabs/ghq-project-manager/releases
 
-# Short description of this project
 description: |-
 
   ghq project manager for vcode
 
 usage: |-
+
+  ```shell
+    code --install-extension hadenlabs.ghq-project-manager
+  ```
+
+include:
+  - 'docs/commands.md'
