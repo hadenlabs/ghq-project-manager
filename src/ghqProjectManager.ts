@@ -95,7 +95,7 @@ export default class GhqProjectManager {
   openProject(pickedObj: ProjectQuickPick | string, openInNewWindow = false): void {
     const projectPath = this.getProjectPath(pickedObj),
       uri = vscode.Uri.file(projectPath),
-      newWindow = openInNewWindow || !!vscode.workspace.workspaceFolders
+      newWindow = openInNewWindow
 
     vscode.commands.executeCommand('vscode.openFolder', uri, newWindow)
   }
