@@ -18,7 +18,7 @@ export default class Config extends Object {
     this.baseProjectFolders = ''
   }
 
-  loadConfigFromVsCode(vscodeConfig: WorkspaceConfiguration) {
+  loadConfigFromVsCode(vscodeConfig: WorkspaceConfiguration): void {
     this.baseProjectFolders = vscodeConfig.get('ghqRoot', '')
   }
 }
