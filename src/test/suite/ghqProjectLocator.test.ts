@@ -41,8 +41,8 @@ suite('ghqProjectLocator locateGhqProjects', () => {
     projects += 'github.com/hadenlabs/repo3 \n'
     const ghqRoot = '/home/user/projects'
 
-    makeGetRepositoryListStub.returns(projects)
-    makeGetGhqRootStub.returns(ghqRoot)
+    makeGetRepositoryListStub.resolves(projects)
+    makeGetGhqRootStub.resolves(ghqRoot)
   })
 
   teardown(() => {
@@ -50,29 +50,33 @@ suite('ghqProjectLocator locateGhqProjects', () => {
   })
 
   test('should return list dir', () => {
-    const dirList: DirList = projectLocator.locateGhqProjects()
-    expect([
-      '/home/user/projects/github.com/hadenlabs/repo1',
-      '/home/user/projects/github.com/hadenlabs/repo2',
-      '/home/user/projects/github.com/hadenlabs/repo3'
-    ]).to.have.all.members(dirList.directories)
+    projectLocator.locateGhqProjects().then((data) => {
+      const dirList: DirList = data
+      expect([
+        '/home/user/projects/github.com/hadenlabs/repo1',
+        '/home/user/projects/github.com/hadenlabs/repo2',
+        '/home/user/projects/github.com/hadenlabs/repo3'
+      ]).to.have.all.members(dirList.directories)
+    })
   })
 
   test('should return list dir', () => {
-    const projectRepositoryList: ProjectRepository[] = projectLocator.locateGhqProjects().dirs
-    expect([
-      new ProjectRepository({
-        name: 'github.com/hadenlabs/repo1',
-        directory: '/home/user/projects/github.com/hadenlabs/repo1'
-      }),
-      new ProjectRepository({
-        name: 'github.com/hadenlabs/repo2',
-        directory: '/home/user/projects/github.com/hadenlabs/repo2'
-      }),
-      new ProjectRepository({
-        name: 'github.com/hadenlabs/repo3',
-        directory: '/home/user/projects/github.com/hadenlabs/repo3'
-      })
-    ]).to.have.deep.members(projectRepositoryList)
+    projectLocator.locateGhqProjects().then((data) => {
+      const projectRepositoryList: ProjectRepository[] = data.dirs
+      expect([
+        new ProjectRepository({
+          name: 'github.com/hadenlabs/repo1',
+          directory: '/home/user/projects/github.com/hadenlabs/repo1'
+        }),
+        new ProjectRepository({
+          name: 'github.com/hadenlabs/repo2',
+          directory: '/home/user/projects/github.com/hadenlabs/repo2'
+        }),
+        new ProjectRepository({
+          name: 'github.com/hadenlabs/repo3',
+          directory: '/home/user/projects/github.com/hadenlabs/repo3'
+        })
+      ]).to.have.deep.members(projectRepositoryList)
+    })
   })
 })
