@@ -22,7 +22,14 @@ export function activate(context: vscode.ExtensionContext): void {
     projectManager.showProjectList(false)
   })
 
-  context.subscriptions.push(disposable)
+  const newWindowdisposable = vscode.commands.registerCommand(
+    'ghqProjectManager.openProjectNewWindow',
+    () => {
+      projectManager.showProjectList(true)
+    }
+  )
+
+  context.subscriptions.push(disposable, newWindowdisposable)
 }
 
 exports.activate = activate
