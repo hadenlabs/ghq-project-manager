@@ -1,7 +1,6 @@
 // @ts-check
 import { Config, DirList, IProjectRepository } from './domain'
 import * as childProcess from 'child_process'
-import * as sh from 'shelljs'
 import * as promisify from 'util.promisify'
 import * as vscode from 'vscode'
 import * as path from 'path'
@@ -37,8 +36,8 @@ export default class ProjectLocator {
 
   async getGhqRoot(): Promise<string> {
     try {
-      const { stdout } = await promisify(childProcess.exec)('git config --global ghq.root')
-      return stdout.toString()
+      const { stdout } = await promisify(childProcess.exec)('ghq root')
+      return stdout.toString().trim()
     } catch (error) {
       this.handleError(error)
       return ''
@@ -48,7 +47,7 @@ export default class ProjectLocator {
   async ghqGetRepositoryList(): Promise<string> {
     try {
       const { stdout } = await promisify(childProcess.exec)('ghq list')
-      return stdout.toString()
+      return stdout.toString().trim()
     } catch (error) {
       this.handleError(error)
       return ''
