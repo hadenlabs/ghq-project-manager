@@ -31,7 +31,7 @@ export default class DirList {
     })
   }
 
-  exists(dirPath: string) {
+  exists(dirPath: string): boolean {
     return this.dirs.find((e) => e.directory === dirPath) !== undefined
   }
 

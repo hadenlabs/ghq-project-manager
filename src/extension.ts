@@ -9,7 +9,7 @@ const cfg = new Config(vscode.workspace.getConfiguration('ghqProjectManager'))
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {
+export function activate(context: vscode.ExtensionContext): void {
   const isGhqAvailable = sh.which('ghq')
 
   if (!isGhqAvailable) {
@@ -28,7 +28,7 @@ export function activate(context: vscode.ExtensionContext) {
 exports.activate = activate
 
 // this method is called when your extension is deactivated
-export function deactivate() {
+export function deactivate(): void {
   //clear things
 }
 

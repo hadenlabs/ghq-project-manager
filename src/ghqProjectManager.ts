@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import { Config, Icons, ProjectRepository, DirList, ProjectQuickPick } from './domain'
+import { Config, Icons, ProjectRepository, ProjectQuickPick } from './domain'
 import { IQuickPickItem } from './domain/entities'
 
 import ProjectLocator from './ghqProjectLocator'
@@ -59,7 +59,7 @@ export default class GhqProjectManager {
    *
    * @memberOf GhqProjectManager
    */
-  async showProjectList(openInNewWindow: boolean) {
+  async showProjectList(openInNewWindow: boolean): Promise<void> {
     try {
       const options = {
         placeHolder:
