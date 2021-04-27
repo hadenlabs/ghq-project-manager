@@ -18,7 +18,26 @@
 
 ghq project manager for vcode
 
+## Features
+
+- Open projects in the same or new window
+
+## To-do
+
+- [feature: status bar which identifies the current project](https://github.com/hadenlabs/ghq-project-manager/issues/15)
+
 ## Usage
+
+```shell
+  code --install-extension hadenlabs.ghq-project-manager
+```
+
+## Commands
+
+| Command          | Shortcut   | Mac       | Other |
+| ---------------- | ---------- | --------- | ----- |
+| Open Project     | ctrl+alt+p | cmd+alt+p |
+| Open New Project | ctrl+alt+n | cmd+alt+n |
 
 ## Help
 
