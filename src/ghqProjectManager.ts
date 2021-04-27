@@ -24,7 +24,7 @@ export default class GhqProjectManager {
     this.addRepoInRepoList = this.addRepoInRepoList.bind(this)
   }
 
-  getQuickPickList(): ProjectQuickPick[] {
+  async getQuickPickList(): Promise<ProjectQuickPick[]> {
     return this.repoList.map((repo) => {
       const description = `${Icons.globe} ${repo.name}`
       const itemQuickPick: IQuickPickItem = {
@@ -66,7 +66,7 @@ export default class GhqProjectManager {
           'Select a folder to open:      (it may take a few seconds to search the folders the first time)'
       }
 
-      const projects = this.getProjectsList()
+      const projects = await this.getProjectsList()
 
       const selected:
         | ProjectQuickPick
@@ -75,14 +75,14 @@ export default class GhqProjectManager {
       if (selected) {
         this.openProject(selected, openInNewWindow)
       }
-    } catch (e) {
-      vscode.window.showInformationMessage(`Error while showing Project list: ${e}`)
+    } catch (error) {
+      vscode.window.showInformationMessage(`Error while showing Project list: ${error}`)
     }
   }
 
-  getProjectsList(): ProjectQuickPick[] {
+  async getProjectsList(): Promise<ProjectQuickPick[]> {
     const projectLocator = new ProjectLocator(this.config)
-    const dirList = projectLocator.locateGhqProjects()
+    const dirList = await projectLocator.locateGhqProjects()
     this.updateRepoList(dirList.dirList)
     return this.getQuickPickList()
   }
