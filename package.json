@@ -15,7 +15,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:ghqProjectManager.openProject"
+    "onCommand:ghqProjectManager.openProject",
+    "onCommand:ghqProjectManager.openProjectNewWindow"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -54,6 +55,11 @@
         "command": "ghqProjectManager.openProject",
         "title": "Open Ghq Project",
         "category": "GPM"
+      },
+      {
+        "command": "ghqProjectManager.openProjectNewWindow",
+        "title": "Open Ghq Project in a New Window",
+        "category": "GPM"
       }
     ],
     "keybindings": [
@@ -61,6 +67,11 @@
         "key": "ctrl+alt+p",
         "mac": "cmd+alt+p",
         "command": "ghqProjectManager.openProject"
+      },
+      {
+        "key": "ctrl+alt+n",
+        "mac": "cmd+alt+n",
+        "command": "ghqProjectManager.openProjectNewWindow"
       }
     ]
   },
