@@ -2,7 +2,7 @@
   "name": "ghq-project-manager",
   "displayName": "ghq project manager",
   "description": "ghq-project-manager for vscode",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publisher": "hadenlabs",
   "icon": "assets/images/icon.png",
   "author": "Luis Mayta <slovacus@gmail.com>",
