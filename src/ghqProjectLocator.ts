@@ -1,9 +1,11 @@
 // @ts-check
 import { Config, DirList, IProjectRepository } from './domain'
+import * as childProcess from 'child_process'
+import * as sh from 'shelljs'
+import * as promisify from 'util.promisify'
 import * as vscode from 'vscode'
 import * as path from 'path'
 import { existsSync } from 'fs'
-import { spawn } from 'child_process'
 
 export default class ProjectLocator {
   dirList: DirList
@@ -33,37 +35,31 @@ export default class ProjectLocator {
     return exists
   }
 
-  getGhqRoot(): string {
-    const child = spawn('git config --global ghq.root', {
-      shell: true
-    })
-    child.stdout.on('data', (result) => {
-      return result.toString()
-    })
-    child.stderr.on('close', (error: any) => {
+  async getGhqRoot(): Promise<string> {
+    try {
+      const { stdout } = await promisify(childProcess.exec)('git config --global ghq.root')
+      return stdout.toString()
+    } catch (error) {
       this.handleError(error)
-    })
-    return ''
+      return ''
+    }
   }
 
-  ghqGetRepositoryList(): string {
-    const child = spawn('ghq list', {
-      shell: true
-    })
-    child.stdout.on('data', (result) => {
-      return result.toString()
-    })
-    child.stderr.on('close', (error: any) => {
+  async ghqGetRepositoryList(): Promise<string> {
+    try {
+      const { stdout } = await promisify(childProcess.exec)('ghq list')
+      return stdout.toString()
+    } catch (error) {
       this.handleError(error)
-    })
-    return ''
+      return ''
+    }
   }
 
-  locateGhqProjects(): DirList {
-    const ghqRoot: string = this.getGhqRoot()
-    this.ghqGetRepositoryList()
-      .split('\n')
-      .forEach((element: string) => {
+  async locateGhqProjects(): Promise<DirList> {
+    try {
+      const ghqRoot: string = await this.getGhqRoot()
+      const repositories = await this.ghqGetRepositoryList()
+      repositories.split('\n').forEach((element: string) => {
         if (element === '') {
           return
         }
@@ -74,7 +70,11 @@ export default class ProjectLocator {
         this.dirList.add(repository.name, repository.directory)
       })
 
-    return this.dirList
+      return this.dirList
+    } catch (error) {
+      this.handleError(error)
+      return this.dirList
+    }
   }
 
   private clearDirList(): void {
