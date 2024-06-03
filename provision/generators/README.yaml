@@ -8,11 +8,11 @@
 name: ghq-project-manager
 
 todo:
-  - name: 'feature: status bar which identifies the current project'
-    url: 'https://github.com/hadenlabs/ghq-project-manager/issues/15'
+  - name: "feature: status bar which identifies the current project"
+    url: "https://github.com/hadenlabs/ghq-project-manager/issues/15"
 
 features:
-  - 'Open projects in the same or new window'
+  - "Open projects in the same or new window"
 
 email:
   support: support@hadenlabs.com
@@ -21,7 +21,7 @@ email:
 #logo: docs/logo.png
 
 # License of this project
-license: 'LGPL-3.0'
+license: "LGPL-3.0"
 
 # Canonical GitHub repo
 github_repo: hadenlabs/ghq-project-manager
@@ -41,6 +41,15 @@ badges:
     image: https://img.shields.io/github/release/hadenlabs/ghq-project-manager
     url: https://github.com/hadenlabs/ghq-project-manager/releases
 
+requirements: |-
+
+  This is a list of plugins that need to be installed previously to enjoy all the goodies of this configuration:
+
+  - [ghq-project-manager](https://github.com/hadenlabs/ghq-project-manager)
+  - [gomplate](https://github.com/hairyhenderson/gomplate)
+  - [python](https://www.python.org)
+  - [taskfile](https://github.com/go-task/task)
+
 description: |-
 
   ghq project manager for vcode
@@ -51,5 +60,8 @@ usage: |-
     code --install-extension hadenlabs.ghq-project-manager
   ```
 
+usages:
+  - docs/usage.md
+
 include:
-  - 'docs/commands.md'
+  - "docs/commands.md"

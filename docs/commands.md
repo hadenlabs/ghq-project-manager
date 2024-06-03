@@ -1,4 +1,13 @@
-## Commands
+<!-- Space: Projects -->
+<!-- Parent: GHQProjectManager -->
+<!-- Title: Commands GHQProjectManager -->
+<!-- Label: GHQProjectManager -->
+<!-- Label: Project -->
+<!-- Label: Commands -->
+<!-- Include: disclaimer.md -->
+<!-- Include: ac:toc -->
+
+# Commands
 
 | Command          | Shortcut   | Mac       | Other |
 | ---------------- | ---------- | --------- | ----- |
