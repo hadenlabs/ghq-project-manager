@@ -1,8 +1,8 @@
-import { WorkspaceConfiguration } from 'vscode'
+import { WorkspaceConfiguration } from "vscode"
 
 export enum Icons {
-  folder = '\uD83D\uDCC2',
-  globe = '\uD83C\uDF10'
+  folder = "\uD83D\uDCC2",
+  globe = "\uD83C\uDF10"
 }
 
 /**
@@ -15,10 +15,10 @@ export default class Config extends Object {
 
   constructor(vscodeCfg?: WorkspaceConfiguration) {
     super()
-    this.baseProjectFolders = ''
+    this.baseProjectFolders = ""
   }
 
   loadConfigFromVsCode(vscodeConfig: WorkspaceConfiguration): void {
-    this.baseProjectFolders = vscodeConfig.get('ghqRoot', '')
+    this.baseProjectFolders = vscodeConfig.get("ghqRoot", "")
   }
 }

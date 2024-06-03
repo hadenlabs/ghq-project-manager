@@ -1,4 +1,4 @@
-import ProjectRepository from './ProjectRepository'
+import ProjectRepository from "./ProjectRepository"
 
 export default class DirList {
   dirs: ProjectRepository[]

@@ -1,5 +1,5 @@
-import { QuickPickItem } from 'vscode'
-import { IQuickPickItem } from './entities'
+import { QuickPickItem } from "vscode"
+import { IQuickPickItem } from "./entities"
 
 export default class ProjectQuickPick implements QuickPickItem {
   label: string

@@ -1,8 +1,8 @@
-import * as vscode from 'vscode'
-import { Config, Icons, ProjectRepository, ProjectQuickPick } from './domain'
-import { IQuickPickItem } from './domain/entities'
+import * as vscode from "vscode"
+import { Config, Icons, ProjectRepository, ProjectQuickPick } from "./domain"
+import { IQuickPickItem } from "./domain/entities"
 
-import ProjectLocator from './ghqProjectLocator'
+import ProjectLocator from "./ghqProjectLocator"
 
 export default class GhqProjectManager {
   config: Config
@@ -28,9 +28,9 @@ export default class GhqProjectManager {
     return this.repoList.map((repo) => {
       const description = `${Icons.globe} ${repo.name}`
       const itemQuickPick: IQuickPickItem = {
-        label: repo.name || 'name',
+        label: repo.name || "name",
         description: description.trim(),
-        directory: repo.directory || 'directory'
+        directory: repo.directory || "directory"
       }
       return new ProjectQuickPick(itemQuickPick)
     })
@@ -63,14 +63,13 @@ export default class GhqProjectManager {
     try {
       const options = {
         placeHolder:
-          'Select a folder to open:      (it may take a few seconds to search the folders the first time)'
+          "Select a folder to open:      (it may take a few seconds to search the folders the first time)"
       }
 
       const projects = await this.getProjectsList()
 
-      const selected:
-        | ProjectQuickPick
-        | undefined = await vscode.window.showQuickPick<ProjectQuickPick>(projects, options)
+      const selected: ProjectQuickPick | undefined =
+        await vscode.window.showQuickPick<ProjectQuickPick>(projects, options)
 
       if (selected) {
         this.openProject(selected, openInNewWindow)
@@ -97,7 +96,7 @@ export default class GhqProjectManager {
       uri = vscode.Uri.file(projectPath),
       newWindow = openInNewWindow
 
-    vscode.commands.executeCommand('vscode.openFolder', uri, newWindow)
+    vscode.commands.executeCommand("vscode.openFolder", uri, newWindow)
   }
 
   getProjectPath(pickedObj: ProjectQuickPick | string): string {
@@ -113,6 +112,6 @@ export default class GhqProjectManager {
   }
 
   getChannelPath(): string {
-    return vscode.env.appName.replace('Visual Studio ', '')
+    return vscode.env.appName.replace("Visual Studio ", "")
   }
 }

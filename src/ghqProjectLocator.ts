@@ -1,10 +1,10 @@
 // @ts-check
-import { Config, DirList, IProjectRepository } from './domain'
-import * as childProcess from 'child_process'
-import * as promisify from 'util.promisify'
-import * as vscode from 'vscode'
-import * as path from 'path'
-import { existsSync } from 'fs'
+import { Config, DirList, IProjectRepository } from "./domain"
+import * as childProcess from "child_process"
+import * as promisify from "util.promisify"
+import * as vscode from "vscode"
+import * as path from "path"
+import { existsSync } from "fs"
 
 export default class ProjectLocator {
   dirList: DirList
@@ -36,21 +36,21 @@ export default class ProjectLocator {
 
   async getGhqRoot(): Promise<string> {
     try {
-      const { stdout } = await promisify(childProcess.exec)('ghq root')
+      const { stdout } = await promisify(childProcess.exec)("ghq root")
       return stdout.toString().trim()
     } catch (error) {
       this.handleError(error)
-      return ''
+      return ""
     }
   }
 
   async ghqGetRepositoryList(): Promise<string> {
     try {
-      const { stdout } = await promisify(childProcess.exec)('ghq list')
+      const { stdout } = await promisify(childProcess.exec)("ghq list")
       return stdout.toString().trim()
     } catch (error) {
       this.handleError(error)
-      return ''
+      return ""
     }
   }
 
@@ -58,8 +58,8 @@ export default class ProjectLocator {
     try {
       const ghqRoot: string = await this.getGhqRoot()
       const repositories = await this.ghqGetRepositoryList()
-      repositories.split('\n').forEach((element: string) => {
-        if (element === '') {
+      repositories.split("\n").forEach((element: string) => {
+        if (element === "") {
           return
         }
         const repository: IProjectRepository = {
@@ -81,6 +81,6 @@ export default class ProjectLocator {
   }
 
   private handleError(err: string) {
-    console.log('Error:', err)
+    console.log("Error:", err)
   }
 }

@@ -1,4 +1,4 @@
-import { IProjectRepository } from './entities'
+import { IProjectRepository } from "./entities"
 
 export default class ProjectRepository {
   name: string

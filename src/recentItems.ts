@@ -1,5 +1,5 @@
-import { Memento } from 'vscode'
-import { RecentItem } from './domain'
+import { Memento } from "vscode"
+import { RecentItem } from "./domain"
 
 export default class RecentItems {
   state: Memento
@@ -14,7 +14,7 @@ export default class RecentItems {
   constructor(state: Memento, listSize = 5) {
     this.state = state
     this.listSize = listSize
-    this.list = this.state.get('recent', [])
+    this.list = this.state.get("recent", [])
   }
 
   addProject(projectPath: string, gitRepo: string): void {
@@ -26,7 +26,7 @@ export default class RecentItems {
     }
 
     this.sortList()
-    this.state.update('recent', this.list)
+    this.state.update("recent", this.list)
   }
 
   sortList(): void {
